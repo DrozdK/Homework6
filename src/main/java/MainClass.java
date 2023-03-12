@@ -1,14 +1,19 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import java.util.concurrent.TimeUnit;
 
 public class MainClass {
 
-    public static void main(String[] args) throws InterruptedException {
-        System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe");
-        ChromeDriver driver = new ChromeDriver();
-        //driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-       // driver.manage().timeouts().pageLoadTimeout(0, TimeUnit.SECONDS);
+    public static void main(String[] args){
+        ChromeOptions chromeOptions = new ChromeOptions();
+        System.setProperty("webdriver.chrome.driver", "D:\\Program Files\\drivers\\chromedriver110\\chromedriver.exe");
+        chromeOptions.setBinary("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe");
+        WebDriver driver = new ChromeDriver(chromeOptions);
+        driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
         driver.get("https://onliner.by");
         driver.findElement(By.xpath("//span[text()='Телевизоры']")).click();
         ((JavascriptExecutor)driver).executeScript("window.scrollBy(0, 250)");
