@@ -5,10 +5,12 @@
         <groups>
             <run>
                 <include name="catalogTests"/>
+                <include name="catalogTestsMobile"/>
             </run>
         </groups>
         <classes>
             <class name="tests.CatalogTests"/>
+            <class name="tests.CatalogTestsMobileAdaptation"/>
         </classes>
     </test>
 </suite>

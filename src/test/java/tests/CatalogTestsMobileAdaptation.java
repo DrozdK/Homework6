@@ -1,19 +1,18 @@
 package tests;
 
-import org.testng.annotations.AfterGroups;
-import org.testng.asserts.SoftAssert;
 import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 
 import static constants.Constant.Url.ONLINER_START_PAGE;
 
-public class CatalogTests extends BaseTest {
+public class CatalogTestsMobileAdaptation extends BaseTestMobile{
 
     SoftAssert softly = new SoftAssert();
 
-    @Test(groups = "catalogTests")
+    @Test(groups = "catalogTestsMobile")
     public void shouldCheckCatalogItems() {
         //given
         ArrayList<String> items = new ArrayList<>();
@@ -28,12 +27,12 @@ public class CatalogTests extends BaseTest {
         items.add("Детям и мамам");
         //when
         basePage.open(ONLINER_START_PAGE);
-        driver.findElement(catalogHelper.CATALOG_BUTTON).click();
+        driver.findElement(catalogHelperMobile.CATALOG_BUTTON).click();
         //then
-        Assert.assertEquals(catalogHelper.getCatalogItems(), items);
+        Assert.assertEquals(catalogHelperMobile.getCatalogItems(), items);
     }
 
-    @Test(groups = "catalogTests")
+    @Test(groups = "catalogTestsMobile")
     public void shouldCheckComputerCatalog() {
         //given
         int id= 2;
@@ -44,32 +43,32 @@ public class CatalogTests extends BaseTest {
         items.add("Сетевое оборудование");
         //when
         basePage.open(ONLINER_START_PAGE);
-        driver.findElement(catalogHelper.CATALOG_BUTTON).click();
-        catalogHelper.chooseCatalogItem(id);
+        driver.findElement(catalogHelperMobile.CATALOG_BUTTON).click();
+        catalogHelperMobile.chooseCatalogItem(id);
         //then
-        softly.assertTrue(driver.findElement(catalogHelper.COMPUTER_ITEMS).isDisplayed());
-        softly.assertTrue(catalogHelper.getItemsFromComputersBlock().containsAll(items));
+        softly.assertTrue(driver.findElement(catalogHelperMobile.COMPUTER_ITEMS).isDisplayed());
+        softly.assertTrue(catalogHelperMobile.getItemsFromComputersBlock().containsAll(items));
         softly.assertAll();
     }
 
-    @Test(groups = "catalogTests")
+    @Test(groups = "catalogTestsMobile")
     public void shouldCheckComponentsSubdirectory() {
         //given
         int id= 2;
         String name = "Комплектующие";
         //when
         basePage.open(ONLINER_START_PAGE);
-        driver.findElement(catalogHelper.CATALOG_BUTTON).click();
-        catalogHelper.chooseCatalogItem(id);
-        catalogHelper.chooseComputerSubdirectory(name);
+        driver.findElement(catalogHelperMobile.CATALOG_BUTTON).click();
+        catalogHelperMobile.chooseCatalogItem(id);
+        catalogHelperMobile.chooseComputerSubdirectory(name);
         //then
-        softly.assertTrue(driver.findElement(catalogHelper.COMPONENT_SUBDIRECTORY_ITEM_NAMES).isDisplayed());
-        softly.assertTrue(driver.findElement(catalogHelper.COMPONENT_SUBDIRECTORY_ITEM_PRODUCTS).isDisplayed());
-        softly.assertTrue(driver.findElement(catalogHelper.COMPONENT_SUBDIRECTORY_ITEM_PRICE).isDisplayed());
+        softly.assertTrue(driver.findElement(catalogHelperMobile.COMPONENT_SUBDIRECTORY_ITEM_NAMES).isDisplayed());
+        softly.assertTrue(driver.findElement(catalogHelperMobile.COMPONENT_SUBDIRECTORY_ITEM_PRODUCTS).isDisplayed());
+        softly.assertTrue(driver.findElement(catalogHelperMobile.COMPONENT_SUBDIRECTORY_ITEM_PRICE).isDisplayed());
         softly.assertAll();
     }
 
-    @AfterGroups("catalogTests")
+    @AfterGroups("catalogTestsMobile")
     public void tearDown() {
         close();
     }
