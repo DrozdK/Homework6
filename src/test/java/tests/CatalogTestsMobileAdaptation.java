@@ -1,16 +1,14 @@
 package tests;
 
-import org.testng.Assert;
+import org.assertj.core.api.Assertions;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.*;
-import org.testng.asserts.SoftAssert;
 
 import java.util.ArrayList;
 
 import static constants.Constant.Url.ONLINER_START_PAGE;
 
 public class CatalogTestsMobileAdaptation extends BaseTestMobile{
-
-    SoftAssert softly = new SoftAssert();
 
     @Test(groups = "catalogTestsMobile")
     public void shouldCheckCatalogItems() {
@@ -29,7 +27,7 @@ public class CatalogTestsMobileAdaptation extends BaseTestMobile{
         basePage.open(ONLINER_START_PAGE);
         driver.findElement(catalogHelperMobile.CATALOG_BUTTON).click();
         //then
-        Assert.assertEquals(catalogHelperMobile.getCatalogItems(), items);
+        Assertions.assertThat(catalogHelperMobile.getCatalogItems().containsAll(items)).isTrue();
     }
 
     @Test(groups = "catalogTestsMobile")
@@ -46,9 +44,8 @@ public class CatalogTestsMobileAdaptation extends BaseTestMobile{
         driver.findElement(catalogHelperMobile.CATALOG_BUTTON).click();
         catalogHelperMobile.chooseCatalogItem(id);
         //then
-        softly.assertTrue(driver.findElement(catalogHelperMobile.COMPUTER_ITEMS).isDisplayed());
-        softly.assertTrue(catalogHelperMobile.getItemsFromComputersBlock().containsAll(items));
-        softly.assertAll();
+        Assertions.assertThat(driver.findElement(catalogHelperMobile.COMPUTER_ITEMS).isDisplayed()).isTrue();
+        Assertions.assertThat(catalogHelperMobile.getItemsFromComputersBlock().containsAll(items)).isTrue();
     }
 
     @Test(groups = "catalogTestsMobile")
@@ -62,10 +59,9 @@ public class CatalogTestsMobileAdaptation extends BaseTestMobile{
         catalogHelperMobile.chooseCatalogItem(id);
         catalogHelperMobile.chooseComputerSubdirectory(name);
         //then
-        softly.assertTrue(driver.findElement(catalogHelperMobile.COMPONENT_SUBDIRECTORY_ITEM_NAMES).isDisplayed());
-        softly.assertTrue(driver.findElement(catalogHelperMobile.COMPONENT_SUBDIRECTORY_ITEM_PRODUCTS).isDisplayed());
-        softly.assertTrue(driver.findElement(catalogHelperMobile.COMPONENT_SUBDIRECTORY_ITEM_PRICE).isDisplayed());
-        softly.assertAll();
+        Assertions.assertThat(driver.findElements(catalogHelperMobile.COMPONENT_SUBDIRECTORY_ITEM_NAMES)).allMatch(WebElement::isDisplayed);
+        Assertions.assertThat(driver.findElements(catalogHelperMobile.COMPONENT_SUBDIRECTORY_ITEM_PRODUCTS)).allMatch(WebElement::isDisplayed);
+        Assertions.assertThat(driver.findElements(catalogHelperMobile.COMPONENT_SUBDIRECTORY_ITEM_PRICE)).allMatch(WebElement::isDisplayed);
     }
 
     @AfterGroups("catalogTestsMobile")

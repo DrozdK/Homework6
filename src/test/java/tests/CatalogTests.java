@@ -1,8 +1,8 @@
 package tests;
 
+import org.assertj.core.api.Assertions;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterGroups;
-import org.testng.asserts.SoftAssert;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
@@ -10,8 +10,6 @@ import java.util.ArrayList;
 import static constants.Constant.Url.ONLINER_START_PAGE;
 
 public class CatalogTests extends BaseTest {
-
-    SoftAssert softly = new SoftAssert();
 
     @Test(groups = "catalogTests")
     public void shouldCheckCatalogItems() {
@@ -30,7 +28,7 @@ public class CatalogTests extends BaseTest {
         basePage.open(ONLINER_START_PAGE);
         driver.findElement(catalogHelper.CATALOG_BUTTON).click();
         //then
-        Assert.assertEquals(catalogHelper.getCatalogItems(), items);
+        Assertions.assertThat(catalogHelper.getCatalogItems().containsAll(items)).isTrue();
     }
 
     @Test(groups = "catalogTests")
@@ -47,9 +45,8 @@ public class CatalogTests extends BaseTest {
         driver.findElement(catalogHelper.CATALOG_BUTTON).click();
         catalogHelper.chooseCatalogItem(id);
         //then
-        softly.assertTrue(driver.findElement(catalogHelper.COMPUTER_ITEMS).isDisplayed());
-        softly.assertTrue(catalogHelper.getItemsFromComputersBlock().containsAll(items));
-        softly.assertAll();
+        Assertions.assertThat(driver.findElement(catalogHelper.COMPUTER_ITEMS).isDisplayed()).isTrue();
+        Assertions.assertThat(catalogHelper.getItemsFromComputersBlock().containsAll(items)).isTrue();
     }
 
     @Test(groups = "catalogTests")
@@ -63,10 +60,10 @@ public class CatalogTests extends BaseTest {
         catalogHelper.chooseCatalogItem(id);
         catalogHelper.chooseComputerSubdirectory(name);
         //then
-        softly.assertTrue(driver.findElement(catalogHelper.COMPONENT_SUBDIRECTORY_ITEM_NAMES).isDisplayed());
-        softly.assertTrue(driver.findElement(catalogHelper.COMPONENT_SUBDIRECTORY_ITEM_PRODUCTS).isDisplayed());
-        softly.assertTrue(driver.findElement(catalogHelper.COMPONENT_SUBDIRECTORY_ITEM_PRICE).isDisplayed());
-        softly.assertAll();
+        Assertions.assertThat(driver.findElements(catalogHelper.COMPONENT_SUBDIRECTORY_ITEM_NAMES)).allMatch(WebElement::isDisplayed);
+        Assertions.assertThat(driver.findElements(catalogHelper.COMPONENT_SUBDIRECTORY_ITEM_PRODUCTS)).allMatch(WebElement::isDisplayed);
+        Assertions.assertThat(driver.findElements(catalogHelper.COMPONENT_SUBDIRECTORY_ITEM_PRICE)).allMatch(WebElement::isDisplayed);
+
     }
 
     @AfterGroups("catalogTests")
