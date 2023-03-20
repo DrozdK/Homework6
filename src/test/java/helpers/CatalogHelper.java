@@ -41,7 +41,7 @@ public class CatalogHelper extends BasePage {
 
     public List<String> getItemsFromComputersBlock(){
         List <String> items = new ArrayList<>();
-        driver.findElements(xpath("(//div[@class='catalog-navigation-list__aside-list'])[3]/div"))
+        driver.findElements(xpath("//div[@data-id='2']//div[contains(@class, 'title')]"))
                 .forEach((WebElement item)-> items.add(item.getText()));
         return items;
     }
