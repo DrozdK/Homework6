@@ -18,7 +18,7 @@ public class CatalogHelper extends BasePage {
 
     //locators
     public final By CATALOG_BUTTON = By.xpath("//a[contains(@href, 'catalog') and contains(text(), 'Каталог')]");
-    public final By COMPUTER_ITEMS = By.xpath("(//div[@class='catalog-navigation-list__aside-list'])[3]");
+    public final By COMPUTER_ITEMS = By.xpath("//div[@data-id='2']//div[contains(@class,'aside-list')]");
     public final By COMPONENT_SUBDIRECTORY_ITEM_NAMES = By.xpath("//div[text()=' Комплектующие ']/..//span[contains(@class, 'title')]");
     public final By COMPONENT_SUBDIRECTORY_ITEM_PRODUCTS = By.xpath("//div[text()=' Комплектующие ']/..//span[3]/text()[1]/..");
     public final By COMPONENT_SUBDIRECTORY_ITEM_PRICE = By.xpath("//div[text()=' Комплектующие ']/..//span//following-sibling::text()[1]/..");

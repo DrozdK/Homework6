@@ -10,7 +10,7 @@
         </groups>
         <classes>
             <class name="tests.CatalogTests"/>
-            <class name="tests.CatalogTestsMobileAdaptation"/>
+            <class name="tests.CatalogMobileAdaptationTests"/>
         </classes>
     </test>
 </suite>

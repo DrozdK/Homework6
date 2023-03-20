@@ -14,25 +14,14 @@ import static constants.Constant.TimeoutVariable.IMPLICIT_WAIT;
 
 public class CommonActions {
 
-    public static WebDriver createDriver() {
+    public static WebDriver createDriver(String type) {
         WebDriver driver = null;
-        switch(ConfigSetter.PLATFORM_AND_BROWSER) {
-            case "win_chrome":
+        switch(type) {
+            case "web":
                 System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
-            default:
-                Assert.fail("Incorrect platform or browser name: " + ConfigSetter.PLATFORM_AND_BROWSER);
-        }
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
-        return driver;
-    }
-
-    public static WebDriver createDriverForMobileAdaptation() {
-        WebDriver driver = null;
-        switch(ConfigSetter.PLATFORM_AND_BROWSER) {
-            case "win_chrome":
+            case "mobile":
                 System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
                 ChromeOptions options = new ChromeOptions();
                 Map<String, String> props = new HashMap<>();

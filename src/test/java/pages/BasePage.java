@@ -4,13 +4,13 @@ import org.openqa.selenium.WebDriver;
 
 public class BasePage {
 
-    protected WebDriver driver;
+    protected static WebDriver driver;
 
     public BasePage(WebDriver driver) {
-        this.driver = driver;
+        BasePage.driver = driver;
     }
 
-    public void open(String url) {
+    public static void open(String url) {
         driver.get(url);
     }
 }
