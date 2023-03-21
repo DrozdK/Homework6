@@ -2,18 +2,19 @@ package tests;
 
 import common.CommonActions;
 import helpers.CatalogHelper;
+import helpers.CatalogHelperMobile;
 import org.openqa.selenium.WebDriver;
 
 import static common.ConfigSetter.HOLD_BROWSER_OPEN;
 
 public class BaseTestMobile {
 
-        protected WebDriver driver = CommonActions.createDriver("mobile");
-        protected CatalogHelper catalogHelperMobile = new CatalogHelper(driver);
+        protected WebDriver driverMobile = CommonActions.createDriverMobile();
+        protected CatalogHelperMobile catalogHelperMobile = new CatalogHelperMobile(driverMobile);
 
         public void close() {
             if (HOLD_BROWSER_OPEN) {
-                driver.quit();
+                driverMobile.quit();
             }
         }
 }
