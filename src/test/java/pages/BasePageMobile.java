@@ -10,7 +10,7 @@ public class BasePageMobile {
         BasePageMobile.driverMobile = driverMobile;
     }
 
-    public static void open(String url) {
+    public void open(String url) {
         driverMobile.get(url);
     }
 }

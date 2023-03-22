@@ -10,7 +10,6 @@ import static constants.Constant.Url.ONLINER_START_PAGE;
 import static enums.CatalogItems.*;
 import static enums.SubCatalogItems.*;
 import static enums.SubCatalogItems.NETWORK_EQUIPMENT;
-import static pages.BasePageMobile.open;
 
 public class CatalogMobileAdaptationTests extends BaseTestMobile{
 
@@ -18,11 +17,11 @@ public class CatalogMobileAdaptationTests extends BaseTestMobile{
 
     @BeforeMethod
     public void openCatalogPage() {
-        open(ONLINER_START_PAGE);
+        basePageMobile.open(ONLINER_START_PAGE);
         driverMobile.findElement(catalogHelperMobile.CATALOG_BUTTON).click();
     }
 
-    @Test(groups = "catalogTestsMobile")
+    @Test(priority = 3)
     public void shouldCheckCatalogItems() {
         //given
         ArrayList<String> items = new ArrayList<>();
@@ -39,7 +38,7 @@ public class CatalogMobileAdaptationTests extends BaseTestMobile{
         softly.assertEquals(catalogHelperMobile.getCatalogItems(), items);
     }
 
-    @Test(groups = "catalogTestsMobile")
+    @Test(priority = 1)
     public void shouldCheckComputerCatalog() {
         //given
         int id= 2;
@@ -56,7 +55,7 @@ public class CatalogMobileAdaptationTests extends BaseTestMobile{
         softly.assertAll();
     }
 
-    @Test(groups = "catalogTestsMobile")
+    @Test(priority = 2)
     public void shouldCheckComponentsSubdirectory() {
         //given
         int id= 2;

@@ -2,12 +2,6 @@
 
 <suite name="CatalogSuite" verbose="1" >
     <test name="test for onliner catalog" >
-        <groups>
-            <run>
-                <include name="catalogTests"/>
-                <include name="catalogTestsMobile"/>
-            </run>
-        </groups>
         <classes>
             <class name="tests.CatalogTests"/>
             <class name="tests.CatalogMobileAdaptationTests"/>

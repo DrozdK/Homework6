@@ -10,7 +10,7 @@ public class BasePage {
         BasePage.driver = driver;
     }
 
-    public static void open(String url) {
+    public void open(String url) {
         driver.get(url);
     }
 }

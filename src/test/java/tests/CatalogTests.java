@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import static constants.Constant.Url.ONLINER_START_PAGE;
 import static enums.CatalogItems.*;
 import static enums.SubCatalogItems.*;
-import static pages.BasePage.open;
 
 public class CatalogTests extends BaseTest {
 
@@ -17,11 +16,11 @@ public class CatalogTests extends BaseTest {
 
     @BeforeMethod
     public void openCatalogPage() {
-        open(ONLINER_START_PAGE);
+        basePage.open(ONLINER_START_PAGE);
         driver.findElement(catalogHelper.CATALOG_BUTTON).click();
     }
 
-    @Test(groups = "catalogTests")
+    @Test(priority = 3)
     public void shouldCheckCatalogItems() {
         //given
         ArrayList<String> items = new ArrayList<>();
@@ -38,7 +37,7 @@ public class CatalogTests extends BaseTest {
         softly.assertEquals(catalogHelper.getCatalogItems(), items);
     }
 
-    @Test(groups = "catalogTests")
+    @Test(priority = 1)
     public void shouldCheckComputerCatalog() {
         //given
         int id= 2;
@@ -55,7 +54,7 @@ public class CatalogTests extends BaseTest {
         softly.assertAll();
     }
 
-    @Test(groups = "catalogTests")
+    @Test(priority = 2)
     public void shouldCheckComponentsSubdirectory() {
         //given
         int id= 2;
