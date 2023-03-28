@@ -1,6 +1,6 @@
 package enums;
 
-public enum CatalogItems {
+public enum CatalogItem {
     ELECTRONIC("Электроника"),
     COMPUTERS("Компьютеры и сети"),
     HOUSEHOLD_APPLIANCE("Бытовая техника"),
@@ -13,7 +13,7 @@ public enum CatalogItems {
 
     private final String item;
 
-    CatalogItems(String item) {
+    CatalogItem(String item) {
         this.item = item;
     }
 

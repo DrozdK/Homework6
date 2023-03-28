@@ -1,6 +1,6 @@
 package enums;
 
-public enum SubCatalogItems {
+public enum SubCatalogItem {
     LAPTOPS_COMPUTERS_MONITORS("Ноутбуки, компьютеры, мониторы"),
     ACCESSORIES("Комплектующие"),
     DATA_STORAGE("Хранение данных"),
@@ -8,7 +8,7 @@ public enum SubCatalogItems {
 
     private final String item;
 
-    SubCatalogItems(String item) {
+    SubCatalogItem(String item) {
         this.item = item;
     }
 
